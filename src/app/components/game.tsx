@@ -1,6 +1,6 @@
+import { History } from "@/features/history/components/history";
 import { useGameStore } from "../hooks";
 import { Board } from "./board";
-import { History } from "./history";
 
 export function Game() {
   const { history, currentMove } = useGameStore((state) => state);

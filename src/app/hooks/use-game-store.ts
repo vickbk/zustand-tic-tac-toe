@@ -78,3 +78,7 @@ export const useGameStore = create(
     },
   ),
 );
+
+export function useGameStoreState() {
+  return useGameStore((state) => state);
+}
