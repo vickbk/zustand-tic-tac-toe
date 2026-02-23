@@ -8,8 +8,13 @@ export const SquareButton = ({
   onClick?: () => void;
 }) => {
   return (
-    <button className="p-4 border rounded-lg" type="button" onClick={onClick}>
-      {value ?? ""}
+    <button
+      className={"p-4 border rounded-lg" + (value ? " bg-gray-200" : "")}
+      type="button"
+      disabled={!!value}
+      onClick={onClick}
+    >
+      {value ?? "-"}
     </button>
   );
 };
