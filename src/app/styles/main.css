@@ -3,3 +3,7 @@
 body {
   @apply grid place-items-center h-screen;
 }
+
+button {
+  @apply cursor-pointer;
+}
