@@ -55,5 +55,5 @@ export const useGameStore = create<GameStoreState>(
 export function useGameStoreState<K extends keyof GameStoreState>(
   keys?: [K, ...K[]],
 ) {
-  return usePickFromStore<GameStoreState, K>(useGameStore, keys);
+  return usePickFromStore(useGameStore, keys);
 }
