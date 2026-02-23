@@ -8,18 +8,26 @@ import { useShallow } from "zustand/react/shallow";
  * @template K - The keys of the store state to pick.
  * @param {UseBoundStore<StoreApi<T>>} useHook - The Zustand store hook.
  * @param {K[]} [keys] - Optional array of keys to pick from the store state. If omitted, returns the entire state.
- * @returns {Pick<T, K>} An object containing only the picked keys and their values from the store state.
+ * @returns {T | Pick<T, K>} The entire state if no keys are provided, otherwise an object containing only the picked keys and their values.
+ * @throws {Error} If a provided key does not exist in the store state.
  *
  * @example
  * const { count, user } = usePickFromStore(useStore, ["count", "user"]);
  */
+export function usePickFromStore<T extends object>(
+  useHook: UseBoundStore<StoreApi<T>>,
+): T;
+export function usePickFromStore<T extends object, K extends keyof T>(
+  useHook: UseBoundStore<StoreApi<T>>,
+  keys: K[],
+): Pick<T, K>;
 export function usePickFromStore<T extends object, K extends keyof T>(
   useHook: UseBoundStore<StoreApi<T>>,
   keys?: K[],
-): Pick<T, K> {
+) {
   return useHook(
     useShallow((state) => {
-      if (!keys) return state as Pick<T, K>;
+      if (!keys) return state;
       return keys.reduce(
         (acc, key) => {
           if (!(key in state)) {
