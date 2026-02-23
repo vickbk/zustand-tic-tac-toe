@@ -28,6 +28,7 @@ export function usePickFromStore<T extends object, K extends keyof T>(
                 `Key "${String(key)}" does not exist in the store state. This may indicate a type mismatch.`,
               );
             }
+            return acc;
           }
           acc[key] = state[key];
           return acc;
