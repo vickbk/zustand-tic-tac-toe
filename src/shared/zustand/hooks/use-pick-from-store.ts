@@ -31,9 +31,12 @@ export function usePickFromStore<T extends object, K extends keyof T>(
       return keys.reduce(
         (acc, key) => {
           if (!(key in state)) {
-            throw new Error(
-              `Key "${String(key)}" does not exist in the store state.`,
-            );
+            if (import.meta.env.DEV) {
+              console.warn(
+                `Key "${String(key)}" does not exist in the store state. This may indicate a type mismatch.`,
+              );
+            }
+            return acc;
           }
           acc[key] = state[key];
           return acc;
