@@ -1,7 +1,7 @@
 import { useGameStoreState } from "@/app/hooks";
 
 export const Status = ({ status }: { status: string }) => {
-  const { history, resetHistory } = useGameStoreState();
+  const { history, dispatch } = useGameStoreState();
   return (
     <div>
       {status}{" "}
@@ -9,7 +9,7 @@ export const Status = ({ status }: { status: string }) => {
         <button
           type="button"
           onClick={() => {
-            resetHistory();
+            dispatch({ type: "resetHistory" });
           }}
         >
           Reset
