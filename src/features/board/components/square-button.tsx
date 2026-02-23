@@ -9,10 +9,7 @@ export const SquareButton = ({
 }) => {
   return (
     <button
-      className={
-        "p-4 border rounded-lg" +
-        (value ? " bg-gray-200 cursor-not-allowed!" : "")
-      }
+      className={"p-4 border rounded-lg" + (value ? " bg-gray-200" : "")}
       type="button"
       disabled={!!value}
       onClick={onClick}

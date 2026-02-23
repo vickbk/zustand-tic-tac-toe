@@ -6,4 +6,7 @@ body {
 
 button {
   @apply cursor-pointer;
+  &:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
 }
