@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+body {
+  @apply grid place-items-center h-screen;
+}
