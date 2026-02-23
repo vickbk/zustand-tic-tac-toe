@@ -1,9 +1,9 @@
+import { useGameStoreState } from "@/app/hooks";
 import { getGameData } from "../scripts";
 import type { BoardType } from "../types";
-import { useGameStore } from "./use-game-store";
 
 export function useSquares(squares: BoardType) {
-  const { currentMove, dispatch } = useGameStore((state) => state);
+  const { currentMove, dispatch } = useGameStoreState();
   const { winner, player, status } = getGameData({
     squares,
     currentMove,
