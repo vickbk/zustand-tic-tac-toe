@@ -14,6 +14,7 @@ export const SquareButton = ({
         (value ? " bg-gray-200 cursor-not-allowed!" : "")
       }
       type="button"
+      disabled={!!value}
       onClick={onClick}
     >
       {value ?? "-"}
