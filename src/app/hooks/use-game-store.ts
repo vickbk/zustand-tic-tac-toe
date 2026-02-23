@@ -15,7 +15,8 @@ export const useGameStore = create(
           set((state) => {
             const options = {
               addHistory() {
-                const squares: BoardType = action.payload as BoardType;
+                if (action.type !== "addHistory") return state;
+                const squares = action.payload;
                 return {
                   ...state,
                   history: [
@@ -26,6 +27,7 @@ export const useGameStore = create(
                 };
               },
               resetHistory() {
+                if (action.type !== "resetHistory") return state;
                 return {
                   ...state,
                   history: [Array(9).fill(null)],
@@ -33,7 +35,8 @@ export const useGameStore = create(
                 };
               },
               setCurrentMove() {
-                const currentMove = action.payload as number;
+                if (action.type !== "setCurrentMove") return state;
+                const currentMove = action.payload;
                 return {
                   ...state,
                   currentMove,
@@ -42,38 +45,6 @@ export const useGameStore = create(
             };
             return options[action.type]?.() || state;
           });
-        },
-        addHistory: (
-          squares: BoardType | ((prevSquares: BoardType) => BoardType),
-        ) => {
-          set((state) => ({
-            ...state,
-            history: [
-              ...state.history.slice(0, state.currentMove + 1),
-              typeof squares === "function"
-                ? squares(state.history[state.currentMove])
-                : squares,
-            ],
-            currentMove: state.currentMove + 1,
-          }));
-        },
-        resetHistory: () => {
-          set((state) => ({
-            ...state,
-            history: [Array(9).fill(null)],
-            currentMove: 0,
-          }));
-        },
-        setCurrentMove: (
-          currentMove: number | ((prevCurrentMove: number) => number),
-        ) => {
-          set((state) => ({
-            ...state,
-            currentMove:
-              typeof currentMove === "function"
-                ? currentMove(state.currentMove)
-                : currentMove,
-          }));
         },
       };
     },
