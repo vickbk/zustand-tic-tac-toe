@@ -14,13 +14,7 @@ import { useShallow } from "zustand/react/shallow";
  * @example
  * const { count, user } = usePickFromStore(useStore, ["count", "user"]);
  */
-export function usePickFromStore<T extends object>(
-  useHook: UseBoundStore<StoreApi<T>>,
-): T;
-export function usePickFromStore<T extends object, K extends keyof T>(
-  useHook: UseBoundStore<StoreApi<T>>,
-  keys: K[],
-): Pick<T, K>;
+
 export function usePickFromStore<T extends object, K extends keyof T>(
   useHook: UseBoundStore<StoreApi<T>>,
   keys?: K[],

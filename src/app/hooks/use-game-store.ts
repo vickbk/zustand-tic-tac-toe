@@ -14,6 +14,7 @@ import type { DispatchAction, GameStoreState } from "../types";
  * const { history, currentMove, dispatch } = useGameStore();
  * dispatch({ type: "addHistory", payload: newSquares });
  */
+
 export const useGameStore = create<GameStoreState>(
   combine(
     {
@@ -91,8 +92,5 @@ export function useGameStoreState<K extends keyof GameStoreState>(
 export function useGameStoreState<K extends keyof GameStoreState>(
   keys?: [K, ...K[]],
 ) {
-  if (!keys) {
-    return usePickFromStore<GameStoreState>(useGameStore);
-  }
   return usePickFromStore<GameStoreState, K>(useGameStore, keys);
 }

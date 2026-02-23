@@ -12,6 +12,7 @@ import { useGameStoreState } from "@/app/hooks";
  * @example
  * const { history, isGameStart, setCurrentMove, isCurrentMove } = useHistory();
  */
+
 export function useHistory() {
   const { history, dispatch, currentMove } = useGameStoreState();
 

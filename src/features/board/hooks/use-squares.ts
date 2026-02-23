@@ -13,6 +13,7 @@ import type { BoardType } from "../types";
  * @example
  * const [handleSquareClick, status] = useSquares(currentSquares);
  */
+
 export function useSquares(squares: BoardType) {
   const { currentMove, dispatch } = useGameStoreState([
     "currentMove",
