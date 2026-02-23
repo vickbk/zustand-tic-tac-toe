@@ -1,9 +1,9 @@
+import { Board } from "@/features/board/components/board";
 import { History } from "@/features/history/components/history";
-import { useGameStore } from "../hooks";
-import { Board } from "./board";
+import { useGameStoreState } from "../hooks";
 
 export function Game() {
-  const { history, currentMove } = useGameStore((state) => state);
+  const { history, currentMove } = useGameStoreState();
 
   return (
     <div className="flex flex-col items-center gap-4">

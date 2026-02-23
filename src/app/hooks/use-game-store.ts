@@ -1,6 +1,7 @@
+import type { BoardType } from "@/features/board";
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
-import type { BoardType, DispatchAction } from "../types/game-types";
+import type { DispatchAction } from "../types";
 
 export const useGameStore = create(
   combine(
