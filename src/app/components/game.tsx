@@ -3,7 +3,10 @@ import { History } from "@/features/history/components/history";
 import { useGameStoreState } from "../hooks";
 
 export function Game() {
-  const { history, currentMove } = useGameStoreState();
+  const { history, currentMove } = useGameStoreState([
+    "currentMove",
+    "history",
+  ]);
 
   return (
     <div className="flex flex-col items-center gap-4">
