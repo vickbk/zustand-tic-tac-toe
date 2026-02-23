@@ -9,7 +9,7 @@ export const History = () => {
           <li key={index}>
             {
               <button
-                className={isCurrentMove(index) ? "font-bold" : ""}
+                className={isCurrentMove(index) ? "font-bold" : "underline"}
                 type="button"
                 onClick={() => setCurrentMove(index)}
               >
