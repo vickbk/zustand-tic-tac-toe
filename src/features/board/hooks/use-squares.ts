@@ -3,7 +3,10 @@ import { getGameData } from "../scripts";
 import type { BoardType } from "../types";
 
 export function useSquares(squares: BoardType) {
-  const { currentMove, dispatch } = useGameStoreState();
+  const { currentMove, dispatch } = useGameStoreState([
+    "currentMove",
+    "dispatch",
+  ]);
   const { winner, player, status } = getGameData({
     squares,
     currentMove,

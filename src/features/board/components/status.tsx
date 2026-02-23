@@ -1,7 +1,7 @@
 import { useGameStoreState } from "@/app/hooks";
 
 export const Status = ({ status }: { status: string }) => {
-  const { history, dispatch } = useGameStoreState();
+  const { history, dispatch } = useGameStoreState(["history", "dispatch"]);
   return (
     <div>
       {status}{" "}
