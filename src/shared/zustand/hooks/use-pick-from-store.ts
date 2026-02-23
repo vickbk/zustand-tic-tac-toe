@@ -9,7 +9,6 @@ import { useShallow } from "zustand/react/shallow";
  * @param {UseBoundStore<StoreApi<T>>} useHook - The Zustand store hook.
  * @param {K[]} [keys] - Optional array of keys to pick from the store state. If omitted, returns the entire state.
  * @returns {Pick<T, K>} An object containing only the picked keys and their values from the store state.
- * @throws {Error} If a provided key does not exist in the store state.
  *
  * @example
  * const { count, user } = usePickFromStore(useStore, ["count", "user"]);
@@ -24,9 +23,11 @@ export function usePickFromStore<T extends object, K extends keyof T>(
       return keys.reduce(
         (acc, key) => {
           if (!(key in state)) {
-            throw new Error(
-              `Key "${String(key)}" does not exist in the store state.`,
-            );
+            if (import.meta.env.DEV) {
+              console.warn(
+                `Key "${String(key)}" does not exist in the store state. This may indicate a type mismatch.`,
+              );
+            }
           }
           acc[key] = state[key];
           return acc;
